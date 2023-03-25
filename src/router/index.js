@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import edit from '../views/edit'
+import park from '../views/park'
 import home from '../views/home'
+import operate from '../views/operate'
 
 Vue.use(Router);
 
@@ -14,9 +15,14 @@ export default new Router({
 			component: home
 		},
 		{
-			path:'/edit',
-			name:'edit',
-			component:edit
+			path:'/park',
+			name:'park',
+			component:park
+		},
+		{
+			path:'/operate',
+			name:'operate',
+			component:operate
 		}
 	]
 })

@@ -1,27 +1,23 @@
 <template>
     <el-container>
+        <el-header>
+            <div class="title">
+                <el-button type="primary" @click="parkSel()">车位选择</el-button>
+            </div>
+        </el-header>
         <el-main>
-            <el-table :data="buildings" style="width: 1000px" border>
-                <el-table-column prop="number" label="房间号">
+            <el-table :data="buildings" style="width: 800px" border>
+                <el-table-column prop="buildingNo" label="楼号">
                 </el-table-column>
-                <el-table-column prop="isSelected" label="状态">
-                    <template slot-scope="scope">
-                        <div v-if="scope.row.isSelected === 0">
-                            <el-tag type="success">未选</el-tag>
-                        </div>
-                        <div v-if="scope.row.isSelected === 1">
-                            <el-tag type="danger">已选</el-tag>
-                        </div>
-                    </template>
+                <el-table-column prop="area" label="面积 (m²)">
+                </el-table-column>
+                <el-table-column prop="floorSum" label="层数">
+                </el-table-column>
+                <el-table-column prop="unitSum" label="单元数">
                 </el-table-column>
                 <el-table-column prop="operage" label="操作">
                     <template slot-scope="scope">
-                        <div v-if="scope.row.isSelected === 0">
-                            <el-link icon="el-icon-check" type="success" @click="select(scope.row)">选择</el-link>
-                        </div>
-                        <div v-if="scope.row.isSelected === 1">
-                            <el-link icon="el-icon-close" type="danger" @click="disSelect(scope.row)">取消选择</el-link>
-                        </div>
+                        <el-button type="primary" @click="disSelect(scope.row)">房间选择</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -33,7 +29,7 @@
 export default {
     name: 'operate',
     created(){
-        // this.buildingSel()
+        this.buildingSel()
     },
     data() {
         return {
@@ -43,21 +39,21 @@ export default {
     methods: {
         buildingSel() {
             this.axios({
-                method: 'post',
-                url: 'getNum',
-                data: {
-                    number: this.queryForm.searchKey,
-                    pageNum: num,
-                    pageSize: size
-                }
+                method: 'get',
+                url: 'building/getAllBuilding'
             }).then((resp) => {
-                this.numbers = resp.data.data.list;
-                this.itemTotalCount = resp.data.data.total;
+                this.buildings = resp.data.data;
             })
+        },
+        parkSel(){
+            this.$router.push('/park')
         }
     }
 }
 </script>
 <style scoped>
-
+.title{
+    text-align: left;
+    padding-top: 10px;
+}
 </style>

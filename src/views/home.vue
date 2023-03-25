@@ -39,7 +39,7 @@ export default {
             console.log('webSocket建立成功')
         },
         webSocketOnError(){
-            this.initWebSocket()
+            // this.initWebSocket()
         },
         webSocketOnMessage(e){
             const redata = JSON.parse(e.data)

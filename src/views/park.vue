@@ -3,7 +3,10 @@
         <el-header style="padding-top: 10px;">
             <el-form :inline="true" :model="queryForm" class="demo-form-inline" style="float: left;">
                 <el-form-item>
-                    <el-input v-model="queryForm.searchKey" placeholder="请输入房间号"></el-input>
+                    <el-button icon="el-icon-house" round @click="returnMain">返回主页</el-button>
+                </el-form-item>
+                <el-form-item>
+                    <el-input v-model="queryForm.searchKey" placeholder="请输入车位号"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="query(1, pageSize)">查询</el-button>
@@ -12,7 +15,7 @@
         </el-header>
         <el-main>
             <el-table :data="numbers" style="width: 1000px" border>
-                <el-table-column prop="number" label="房间号">
+                <el-table-column prop="parkNumber" label="车位号">
                 </el-table-column>
                 <el-table-column prop="isSelected" label="状态">
                     <template slot-scope="scope">
@@ -47,7 +50,7 @@
 <script>
 
 export default {
-    name: 'edit',
+    name: 'park',
     created(){
         this.query(this.pageNum,this.pageSize)
     },
@@ -66,9 +69,9 @@ export default {
         query(num, size) {
             this.axios({
                 method: 'post',
-                url: 'getNum',
+                url: '/park/getPark',
                 data: {
-                    number: this.queryForm.searchKey,
+                    parkNumber: this.queryForm.searchKey,
                     pageNum: num,
                     pageSize: size
                 }
@@ -93,7 +96,7 @@ export default {
         select(val) {
             this.axios({
                 method: 'post',
-                url: 'updateNum',
+                url: '/park/updatePark',
                 data: {
                     id: val.id,
                     isSelected: 1
@@ -115,7 +118,7 @@ export default {
                 .then(_ => {
                     this.axios({
                         method: 'post',
-                        url: 'updateNum',
+                        url: '/park/updatePark',
                         data: {
                             id: val.id,
                             isSelected: 0
@@ -132,6 +135,9 @@ export default {
                         }
                     })
                 })
+        },
+        returnMain(){
+            this.$router.push('/operate')
         }
     }
 }

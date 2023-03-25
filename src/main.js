@@ -7,8 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-// axios.defaults.baseURL = 'http://121.36.7.55:8086/numSel'
-axios.defaults.baseURL = 'http://localhost:8086'
+// axios.defaults.baseURL = 'http://121.36.7.55:8086/NumberSelection/'
+axios.defaults.baseURL = 'http://localhost:8086/'
 
 import VueRouter from 'vue-router'
 import router from './router'
