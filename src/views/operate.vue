@@ -17,7 +17,7 @@
                 </el-table-column>
                 <el-table-column prop="operage" label="操作">
                     <template slot-scope="scope">
-                        <el-button type="primary" @click="disSelect(scope.row)">房间选择</el-button>
+                        <el-button type="primary" @click="selectRoom(scope.row)">房间选择</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -47,6 +47,9 @@ export default {
         },
         parkSel(){
             this.$router.push('/park')
+        },
+        selectRoom(row){
+            this.$router.push({name:'room',params:{building:row}})
         }
     }
 }
