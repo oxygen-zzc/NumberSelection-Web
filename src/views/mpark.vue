@@ -1,11 +1,15 @@
 <template>
     <div>
+        <div style="text-align: left; padding: 5px;">
+            <el-button icon="el-icon-house" round @click="returnMain">返回主页</el-button>
+            <span style="padding-left: 10px;">选车位</span>
+        </div>
         <div v-for="item in parks">
             <div class="parkItem">
                 <div v-if="item.isSelected == 0" style="padding: 10px 0 10px 0;">
                     {{ item.parkNumber }}
                 </div>
-                <div v-if="item.isSelected == 1" style="background-color: brown; height: 100%; padding: 10px 0 10px 0;">
+                <div v-if="item.isSelected == 1" style="color: white; background-color: green; height: 100%; padding: 10px 0 10px 0;">
                     {{ item.parkNumber }}
                 </div>
             </div>
@@ -49,6 +53,9 @@ export default {
         clear(){
             clearInterval(this.intervalid);
             this.intervalid = null;
+        },
+        returnMain() {
+            this.$router.push('/')
         }
     }
 }
@@ -56,8 +63,6 @@ export default {
 <style scoped>
     .parkItem{
         float: left;
-        background-color: rgb(37, 117, 5);
-        color: white;
         border: 1px;
         border-style: solid;
         border-color: rgb(0, 0, 0);

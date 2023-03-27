@@ -178,17 +178,18 @@ export default {
 }
 
 .isSelected {
-    background-color: #F56C6C;
-    color: #F56C6C;
+    background-color: #67C23A;
+    color: #67C23A;
     height: 100%;
 }
 
 .noSelected {
-    background-color: #67C23A;
-    color: #67C23A;
+    /* background-color: #67C23A; */
+    color: white;
 }
 
 .text {
     padding-top: 6px;
     padding-bottom: 6px;
-}</style>
+}
+</style>
